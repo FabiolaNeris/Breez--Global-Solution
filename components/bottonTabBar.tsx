@@ -9,7 +9,7 @@ export default function BottomTabBar(){
 
     const tabs = [
         { label: 'Home', icon: 'home-outline', route: '/home' },
-        { label: 'Rotas', icon: 'map-outline', route: '/captura' },
+        { label: 'Rotas', icon: 'map-outline', route: '/rotas' },
         { label: 'Perfil', icon: 'person-outline', route: '/perfil' },
     ]
 

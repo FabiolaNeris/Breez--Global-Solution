@@ -20,9 +20,21 @@ export default function CadastrarUsuario(){
     const[email,setEmail]=useState('')
     const[senha,setSenha]=useState('')
 
+    const[mensagemErro, setMensagemErro] =useState ('')
+    const [mensagemSucesso, setMensagemSucesso] =useState ('')
+
     const router = useRouter()
 
     const cadastrar = () => {
+
+      setMensagemErro('')
+      setMensagemSucesso('')
+
+      if(!nome.trim()|| !email.trim() || !senha.trim()){
+        setMensagemErro("Preencha todos os campos")
+        return
+      }
+
         createUserWithEmailAndPassword(auth, email, senha)
            .then(async(userCredential) => {
            // Logado 
@@ -37,13 +49,23 @@ export default function CadastrarUsuario(){
            await AsyncStorage.setItem('@user', JSON.stringify(user))
            
            console.log(user)
-
+           
+           setMensagemSucesso("Cadastro realizado com sucesso!");
            router.push('/home')
          })
          .catch((error) => {
-           const errorCode = error.code;
+          const errorCode = error.code;
+          if(
+            error.code === 'auth/email-already-in-use'
+          ){
+            setMensagemErro("Email já cadastrado")
+          }else{
+            setMensagemErro("Erro ao cadastrar usuário")
+          }
+
            const errorMessage = error.message;
            console.log(errorMessage)
+          
          });
    };
 
@@ -85,6 +107,13 @@ export default function CadastrarUsuario(){
           <TouchableOpacity style={styles.button} onPress={cadastrar}>
             <Text style={styles.buttonText}>Cadastrar</Text>
           </TouchableOpacity>
+
+          {mensagemErro ? (
+            <Text style={{color:'red', marginTop: 10}}>{mensagemErro}</Text>
+          ) : null}
+          {mensagemSucesso ? (
+            <Text style={{color: 'green', marginTop:10}}>{mensagemSucesso}</Text>
+          ): null}
 
           <Link href="/" style={{ marginTop: 20 }}>Ja possui conta?{''}
             <span style={{color: '#1E90FF', fontWeight: 'bold'}}> Faça login</span></Link>

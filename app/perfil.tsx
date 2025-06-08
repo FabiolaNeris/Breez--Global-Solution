@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {View,Text,StyleSheet,Image,TouchableOpacity, Button} from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useRouter} from 'expo-router'
-import {Ionicons, MaterialIcons, Feather} from '@expo/vector-icons'
+import {Ionicons, Feather} from '@expo/vector-icons'
 
 export default function Perfil(){
     const router = useRouter()

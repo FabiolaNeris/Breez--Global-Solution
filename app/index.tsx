@@ -17,6 +17,8 @@ export default function App(){
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState ('')
 
+    const [mensagemErro, setMensagemErro] = useState('')
+
     const router = useRouter()
 
     useEffect(()=>{
@@ -34,6 +36,19 @@ export default function App(){
     },[])
 
     const realizarLogin =()=>{
+
+        setMensagemErro('');
+
+        if(!email.trim()){
+            setMensagemErro("Email inválido")
+            return
+        }
+
+        if (!senha.trim()){
+            setMensagemErro("Senha inválida")
+            return
+        }
+
         signInWithEmailAndPassword(auth, email, senha)
         .then(async(userCredential)=>{
             //Logado
@@ -51,9 +66,13 @@ export default function App(){
             router.push('/home')
         })
         .catch((error) =>{
-            const errorCode = error.code
-            const errorMessage = error.message
-            console.log(errorMessage)
+            if (error.code ==='auth/invalid-email'){
+                setMensagemErro("Usuário não encontrado")
+            }else if (error.code === 'auth/wrong-password'){
+                setMensagemErro("Senha inválida")
+            }else{
+                setMensagemErro("Erro ao realizar login, faça seu cadastro")
+            }
         })
     }
 
@@ -84,6 +103,10 @@ export default function App(){
             <TouchableOpacity style={styles.button} onPress={realizarLogin}>
             <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
+
+            {mensagemErro? (
+                <Text style={{color: 'red', marginTop: 10}}>{mensagemErro}</Text>
+            ): null}
 
             <Link href="cadastrarUsuario" style={{ marginTop: 20 }}>Ainda não tem conta?{''}
             <span style={{color: '#1E90FF', fontWeight: 'bold'}}> Cadastre-se</span></Link>
