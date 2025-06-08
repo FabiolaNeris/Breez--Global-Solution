@@ -2,11 +2,11 @@
 
 Este é um aplicativo mobile para
 
--Receber recomendações de cuidados (hidratação, horários seguros para atividades ao ar livre).
+- Receber recomendações de cuidados (hidratação, horários seguros para atividades ao ar livre).
 
--Planejar sua saída para os pontos mais frescos da cidade.
+- Planejar sua saída para os pontos mais frescos da cidade.
 
--Colaborar em uma rede de voluntários e órgãos públicos para atender emergências.
+- Colaborar em uma rede de voluntários e órgãos públicos para atender emergências.
 
 
 ## 🚀 Funcionalidades
