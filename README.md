@@ -1,6 +1,7 @@
 # 🌤️ BREEZ - Monitoramento, previsibilidade, alerta, rotas de segurança e pontos de apoio em eventos climáticos extremos
 
 Este é um aplicativo mobile para
+
 -Receber recomendações de cuidados (hidratação, horários seguros para atividades ao ar livre).
 
 -Planejar sua saída para os pontos mais frescos da cidade.
