@@ -25,7 +25,7 @@ export default function Layout() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#d4d4d4',
+    backgroundColor: '#d4d4d',
   },
   content: {
     flex: 1,
